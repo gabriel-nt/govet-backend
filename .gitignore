@@ -1,0 +1,10 @@
+.vscode/
+node_modules/
+dist/
+coverage/
+.env
+ormconfig.json
+README-FEATURES.md
+
+tmp/uploads/*
+!tmp/uploads/.gitkeep
