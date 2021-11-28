@@ -11,7 +11,11 @@ module.exports = {
             rejectUnauthorized: false,
         },
     },
-    entities: ['dist/src/modules/**/infra/typeorm/entities/*.js'],
+    entities: [
+        'dist/src/modules/users/infra/typeorm/entities/*.js',
+        'dist/src/modules/appointments/infra/typeorm/entities/*.js',
+        'dist/src/modules//infra/typeorm/entities/*.js',
+    ],
     migrations: ['dist/shared/infra/typeorm/migrations/*.js'],
     cli: {
         migrationsDir: 'src/shared/infra/typeorm/migrations/',
