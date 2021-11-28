@@ -5,9 +5,15 @@ module.exports = {
     username: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
-    entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
-    migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
+    ssl: true,
+    extra: {
+        ssl: {
+            rejectUnauthorized: false,
+        },
+    },
+    entities: ['dist/src/modules/**/infra/typeorm/entities/*.js'],
+    migrations: ['dist/shared/infra/typeorm/migrations/*.js'],
     cli: {
-        migrationsDir: './src/shared/infra/typeorm/migrations/',
+        migrationsDir: 'src/shared/infra/typeorm/migrations/',
     },
 };
