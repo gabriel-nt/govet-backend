@@ -12,9 +12,8 @@ module.exports = {
         },
     },
     entities: [
-        'dist/src/modules/users/infra/typeorm/entities/*.js',
-        'dist/src/modules/appointments/infra/typeorm/entities/*.js',
-        'dist/src/modules//infra/typeorm/entities/*.js',
+        'dist/modules/users/infra/typeorm/entities/*.js',
+        'dist/modules/appointments/infra/typeorm/entities/*.js',
     ],
     migrations: ['dist/shared/infra/typeorm/migrations/*.js'],
     cli: {
