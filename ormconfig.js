@@ -1,3 +1,16 @@
+const entities =
+    process.env.APP_ENV === 'prd'
+        ? [
+              'dist/modules/users/infra/typeorm/entities/*.js',
+              'dist/modules/appointments/infra/typeorm/entities/*.js',
+          ]
+        : ['./src/modules/**/entities/*.ts'];
+
+const migrations =
+    process.env.APP_ENV === 'prd'
+        ? ['dist/shared/infra/typeorm/migrations/*.js']
+        : ['./src/shared/infra/typeorm/migrations/*.ts'];
+
 module.exports = {
     type: 'postgres',
     host: process.env.DATABASE_HOST,
@@ -11,12 +24,9 @@ module.exports = {
             rejectUnauthorized: false,
         },
     },
-    entities: [
-        'dist/modules/users/infra/typeorm/entities/*.js',
-        'dist/modules/appointments/infra/typeorm/entities/*.js',
-    ],
-    migrations: ['dist/shared/infra/typeorm/migrations/*.js'],
+    entities,
+    migrations,
     cli: {
-        migrationsDir: 'src/shared/infra/typeorm/migrations/',
+        migrationsDir: './src/shared/infra/typeorm/migrations/',
     },
 };
