@@ -12,6 +12,7 @@ sessionsRouter.post(
         [Segments.BODY]: {
             email: Joi.string().email().required(),
             password: Joi.string().required(),
+            type: Joi.string().required().equal('client'),
         },
     }),
     sessionsController.create,
@@ -23,7 +24,7 @@ sessionsRouter.post(
         [Segments.BODY]: {
             email: Joi.string().email().required(),
             password: Joi.string().required(),
-            type: Joi.equal(['admin']),
+            type: Joi.string().required().equal('admin'),
         },
     }),
     sessionsController.create,
