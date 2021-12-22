@@ -7,7 +7,7 @@ export default class AddTypeToUser1640132592271 implements MigrationInterface {
             new TableColumn({
                 name: 'type',
                 type: 'varchar',
-                default: 'client',
+                default: "'client'",
             }),
         );
     }

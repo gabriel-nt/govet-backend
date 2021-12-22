@@ -27,6 +27,6 @@ module.exports = {
     entities,
     migrations,
     cli: {
-        migrationsDir: './src/shared/infra/typeorm/migrations/',
+        migrationsDir: './src/shared/infra/typeorm/migrations',
     },
 };
