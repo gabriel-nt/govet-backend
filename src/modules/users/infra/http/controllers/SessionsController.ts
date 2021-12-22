@@ -8,13 +8,14 @@ export default class SessionsController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { email, password } = request.body;
+        const { email, password, type } = request.body;
 
         const authenticateUser = container.resolve(AuthenticateUserService);
 
         const { user, token } = await authenticateUser.execute({
             email,
             password,
+            type,
         });
 
         return response.json({ user: classToClass(user), token });

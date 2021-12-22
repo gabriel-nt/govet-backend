@@ -17,4 +17,16 @@ sessionsRouter.post(
     sessionsController.create,
 );
 
+sessionsRouter.post(
+    '/administrator',
+    celebrate({
+        [Segments.BODY]: {
+            email: Joi.string().email().required(),
+            password: Joi.string().required(),
+            type: Joi.equal(['admin']),
+        },
+    }),
+    sessionsController.create,
+);
+
 export default sessionsRouter;

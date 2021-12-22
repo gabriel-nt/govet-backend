@@ -21,6 +21,7 @@ class UsersRepository implements IUserRepository {
             users = await this.ormRepository.find({
                 where: {
                     id: Not(except_user_id),
+                    type: 'admin',
                 },
             });
         } else {
@@ -39,6 +40,17 @@ class UsersRepository implements IUserRepository {
     public async findByEmail(email: string): Promise<User | undefined> {
         const user = await this.ormRepository.findOne({
             where: { email },
+        });
+
+        return user;
+    }
+
+    public async findByEmailAndType(
+        email: string,
+        type: string,
+    ): Promise<User | undefined> {
+        const user = await this.ormRepository.findOne({
+            where: { email, type },
         });
 
         return user;

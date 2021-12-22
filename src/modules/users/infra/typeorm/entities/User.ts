@@ -23,6 +23,9 @@ class User {
     avatar: string;
 
     @Column()
+    type?: string;
+
+    @Column()
     @Exclude()
     password: string;
 

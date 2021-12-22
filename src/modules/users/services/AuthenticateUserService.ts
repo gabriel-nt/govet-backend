@@ -9,6 +9,7 @@ import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
     email: string;
+    type: string;
     password: string;
 }
 
@@ -24,8 +25,12 @@ class AuthenticateUserService {
         @inject('HashProvider') private hasProvider: IHashProvider,
     ) {}
 
-    public async execute({ email, password }: IRequest): Promise<IResponse> {
-        const user = await this.usersRepository.findByEmail(email);
+    public async execute({
+        type,
+        email,
+        password,
+    }: IRequest): Promise<IResponse> {
+        const user = await this.usersRepository.findByEmailAndType(email, type);
 
         if (!user) {
             throw new AppError('Incorret email/password combination', 401);
