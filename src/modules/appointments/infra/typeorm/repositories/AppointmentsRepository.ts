@@ -1,5 +1,7 @@
 import { getRepository, Repository, Raw } from 'typeorm';
 
+import IFindAllInDayFromUserDTO from '@modules/appointments/dtos/IFindAllInDayFromUserDTO';
+import IFindAllInMonthFromUserDTO from '@modules/appointments/dtos/IFindAllInMonthFromUserDTO';
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
 import IFindAllInMonthFromProviderDTO from '@modules/appointments/dtos/IFindAllInMonthFromProviderDTO';
@@ -56,6 +58,49 @@ class AppointmentsRepository implements IAppointmentsRepository {
         const appointments = await this.ormRepository.find({
             where: {
                 provider_id,
+                date: Raw(
+                    dateFieldName =>
+                        `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`,
+                ),
+            },
+            relations: ['user'],
+        });
+
+        return appointments;
+    }
+
+    public async findAllInMonthFromUser({
+        user_id,
+        month,
+        year,
+    }: IFindAllInMonthFromUserDTO): Promise<Appointment[]> {
+        const parsedMonth = String(month).padStart(2, '0');
+
+        const appointments = await this.ormRepository.find({
+            where: {
+                user_id,
+                date: Raw(
+                    dateFieldName =>
+                        `to_char(${dateFieldName}, 'MM-YYYY') = '${parsedMonth}-${year}'`,
+                ),
+            },
+        });
+
+        return appointments;
+    }
+
+    public async findAllInDayFromUser({
+        user_id,
+        month,
+        year,
+        day,
+    }: IFindAllInDayFromUserDTO): Promise<Appointment[]> {
+        const parsedMonth = String(month).padStart(2, '0');
+        const parsedDay = String(day).padStart(2, '0');
+
+        const appointments = await this.ormRepository.find({
+            where: {
+                user_id,
                 date: Raw(
                     dateFieldName =>
                         `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`,
