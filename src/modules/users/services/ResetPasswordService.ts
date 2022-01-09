@@ -7,7 +7,7 @@ import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 interface IRequest {
     email: string;
     password: string;
-    confirmPassword: string;
+    password_confirmation: string;
 }
 
 @injectable()
@@ -21,7 +21,7 @@ class ResetPasswordService {
     public async execute({
         email,
         password,
-        confirmPassword,
+        password_confirmation,
     }: IRequest): Promise<void> {
         const user = await this.usersRepository.findByEmail(email);
 
@@ -35,13 +35,13 @@ class ResetPasswordService {
             );
         }
 
-        if (!confirmPassword) {
+        if (!password_confirmation) {
             throw new AppError(
                 'You need to inform the confirm password to set a new password',
             );
         }
 
-        if (password !== confirmPassword) {
+        if (password !== password_confirmation) {
             throw new AppError('You need to inform the same passwords');
         }
 
