@@ -25,6 +25,9 @@ class Appointment {
     @Column()
     user_id: string;
 
+    @Column()
+    description: string;
+
     @ManyToOne(() => User)
     @JoinColumn({ name: 'user_id' })
     user: User;

@@ -9,6 +9,7 @@ interface IRequest {
     provider_id: string;
     date: Date;
     user_id: string;
+    description?: string;
 }
 
 @injectable()
@@ -22,6 +23,7 @@ class CreateAppointmentService {
         provider_id,
         date,
         user_id,
+        description,
     }: IRequest): Promise<Appointment> {
         const appointmentDate = startOfHour(date);
 
@@ -52,6 +54,7 @@ class CreateAppointmentService {
             provider_id,
             user_id,
             date: appointmentDate,
+            description,
         });
 
         return appointment;
