@@ -81,7 +81,7 @@ $ yarn dev:server ou npm run dev
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- Node.js
+- NodeJS
 - TypeScript
 - Postgres
 - MongoDB
@@ -92,7 +92,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 Esse projeto foi desenvolvido com o auxílio das seguintes libs:
 
 - Express
-- Jest
 - TypeORM
 - jwt
 - celebrate
@@ -103,7 +102,6 @@ Esse projeto foi desenvolvido com o auxílio das seguintes libs:
 Para uma melhorar estrutura de projetos utilizamos das seguintes fundamentos:
 
 - DDD
-- TDD
 - SOLID
 
 ###  📘 Padrão de Código
