@@ -22,11 +22,6 @@
 🚧  Finalizado  🚧
 </h3>
 
-### 📌 Sobre 
-O GoBarber é uma aplicação voltada para cabeleireiros.
-Os usuários da aplicação, poderão realizar agendamentos para cortes de cabelos e afins de um prestador de serviços.
-Já os profissionais do área, terão controle de todos os agendamentos que já foram marcados, recebendo notificações de novos agendamentos.
-
 ### 📎 Features
 
 #### Agendamentos
